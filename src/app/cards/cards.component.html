@@ -1,0 +1,9 @@
+<div class="card" style="height: 40rem;">
+    <img ngSrc="{{item.thumbnail}}" width="400" height="400" priority class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title fs-3">{{item.title}}</h5>
+      <p class="card-text">{{item.description}}</p>
+      <p class="card-text text-success font-weight-bold text-center">Price: ${{item.price}}</p>
+      <button class="btn btn-primary fw-bold" (click)="myEvent()">Click me</button>
+    </div>
+</div>

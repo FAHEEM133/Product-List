@@ -1,0 +1,44 @@
+.password-container {
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-bottom: 10px;
+  }
+  
+  .requirements {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .requirements p {
+    margin: 5px 0;
+  }
+  
+  .valid {
+    color: green;
+  }
+  
+  .invalid {
+    color: red;
+  }
+  
+  .low {
+    color: red;
+  }
+  
+  .medium {
+    color: orange;
+  }
+  
+  .high {
+    color: green;
+  }
+  

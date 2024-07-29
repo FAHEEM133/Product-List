@@ -1,0 +1,16 @@
+body{
+    background-color: pink;
+}
+.row{
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+h2{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    padding-top: 30px;
+    text-transform: capitalize;
+}
+
+
