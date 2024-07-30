@@ -9,6 +9,4 @@ import { HomeComponent } from '../home/home.component';
 })
 
 export class SingleDisctrictComponent {
- private calculateService = inject(HomeComponent);
- totalCost = this.calculateService.add(50,25);
 }

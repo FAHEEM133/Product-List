@@ -1,9 +1,26 @@
-<div *ngIf="product">
-    <h2>{{ product.title }}</h2>
-    <img [src]="product.thumbnail" alt="{{ product.title }}">
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
-    <p>Stock: {{ product.stock }}</p>
-    <p>Category: {{ product.category }}</p>
+@if (isLoading) {
+
+  <div *ngIf="item" class="product-details">
+      <h2>{{ item.title }}</h2>
+      <div class="split row">
+          <img class="col" src="{{item.thumbnail}}" priority width="" height="350" alt="{{ item.title }}">
+          <div class="content col">
+              <p>{{ item.description }}</p>
+              <p class="price">Price: ${{ item.price }}</p>
+               <div class="buy-btn">
+                  <!-- @if () {} -->
+                  <button (btnClick)="emitEvent()" class="add-to-cart">Add To Cart</button>
+                  <button (btnClick)="emitEvent()" class="Buy-now">Buy Now</button>
+               </div>
+          </div>
+      </div>
   </div>
+  }@else {
+  <div class="spinner-div">
+      <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+      </div>
+  </div>
+  }
   
+    

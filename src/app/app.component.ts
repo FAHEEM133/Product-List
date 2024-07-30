@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from "./ui/navbar/navbar.component";
 import { HomeComponent } from "./pages/home/home.component";
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +23,13 @@ export class AppComponent {
   
   title = 'angular-fetch-api-task';
   source = ''
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private primengConfig: PrimeNGConfig) {
     // This service can now make HTTP requests via `this.http`.
   }
   categorizedProducts: { [key: string]: Product[]} = {};
 
   async ngOnInit() {
+    this.primengConfig.ripple = true;
     try {
       const response = await fetch("https://dummyjson.com/products");
       const data = await response.json();

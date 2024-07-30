@@ -1,6 +1,8 @@
 import { CommonModule, DatePipe, UpperCasePipe } from '@angular/common';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { CardsComponent } from "../../cards/cards.component";
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../../interface/product';
 
 @Component({
   selector: 'app-home',
@@ -14,31 +16,46 @@ import { CardsComponent } from "../../cards/cards.component";
   providedIn: 'root'
 })
 
-export class HomeComponent implements OnInit {
-getProductsByCategory(_t7: any): any {
-throw new Error('Method not implemented.');
-}
-getCategories(): any {
-throw new Error('Method not implemented.');
-}
-  utcTime: string = '';
-  istTime: string = '';
+export class HomeComponent {
+  text = Date.now();
 
-  add(x: number, y: number) {
-    return x + y;
+  constructor(public http: HttpClient){}
+
+  categorizedProducts: { [key: string]: Product[]} = {};
+
+  async ngOnInit() {
+    try {
+      // this.http.get(("https://dummyjson.com/products").subscribe(data:any) => {
+        
+      // })
+      // 
+      const response = await fetch("https://dummyjson.com/products");
+      const data = await response.json();
+      this.categorizeProducts(data.products);
+      console.log(this.categorizedProducts);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+ 
+  categorizeProducts(products: Product[]) {
+    this.categorizedProducts = products.reduce((acc, product) => {
+      if (!acc[product.category]) {
+        acc[product.category] = [];
+      }
+      acc[product.category].push(product);
+      return acc;
+    }, {} as { [key: string]: Product[] });
+  }
+  getCategories(): string[] {
+    return Object.keys(this.categorizedProducts);
+  }
+ 
+  getProductsByCategory(category: string): Product[] {
+    return this.categorizedProducts[category];
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.convertUtcToIst(new Date().toISOString());
-  }
-
-  convertUtcToIst(utcDateStr: string): void {
-    const utcDate = new Date(utcDateStr);
-    const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC + 5:30
-    const istDate = new Date(utcDate.getTime() + istOffset);
-    this.utcTime = utcDate.toISOString();
-    this.istTime = istDate.toISOString();
+  productSelected(product: Product){
+    alert(`Product ${product.title} selected`);
   }
 }
